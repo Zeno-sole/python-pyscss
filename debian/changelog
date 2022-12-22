@@ -1,0 +1,174 @@
+python-pyscss (1.3.7-5) unstable; urgency=medium
+
+  [ Athos Ribeiro ]
+  * Team upload.
+  * d/p/python-3.10-c-api-port.patch: Port C Python API related code to support
+    Python 3.10
+
+ -- Scott Talbert <swt@techie.net>  Thu, 11 Nov 2021 19:24:34 -0500
+
+python-pyscss (1.3.7-4) unstable; urgency=medium
+
+  [ Athos Ribeiro ]
+  * Team upload.
+  * d/p/support-python-3.10.patch: Add support for Python 3.10 (LP: #1950391)
+
+ -- Scott Talbert <swt@techie.net>  Tue, 09 Nov 2021 21:54:00 -0500
+
+python-pyscss (1.3.7-3) unstable; urgency=medium
+
+  * Team upload.
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+  * Fix pytest 6 compatibility (Closes: #977092).
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 17 Jan 2021 18:10:38 +0100
+
+python-pyscss (1.3.7-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 09 May 2020 13:37:34 +0200
+
+python-pyscss (1.3.7-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Ran wrap-and-sort -bastk.
+  * Standards-Version: 4.5.0.
+  * Switch to debhelper-compat (= 11).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 07 Apr 2020 09:42:49 +0200
+
+python-pyscss (1.3.5-3) unstable; urgency=medium
+
+  * Team upload.
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+  * d/control: Deprecating priority extra as per policy 4.0.1
+  * Convert git repository from git-dpm to gbp layout
+  * Drop Python 2 support.
+  * Add patch to fix tests with Python 3 only.
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 25 Aug 2019 09:35:21 +0200
+
+python-pyscss (1.3.5-2) unstable; urgency=low
+
+  * Remove new less2scss alternatives (Closes: #832343)
+  * Fix binary/manpage name in postinst (Closes: #832341)
+    (thanks to Andreas Beckmann for both reports)
+  * Add authoring date to manpages
+
+ -- W. Martin Borgert <debacle@debian.org>  Sun, 24 Jul 2016 21:54:19 +0000
+
+python-pyscss (1.3.5-1) unstable; urgency=low
+
+  [ Ondřej Nový <novy@ondrej.org> ]
+  * Fixed VCS URL (https)
+
+  [ W. Martin Borgert <debacle@debian.org> ]
+  * Add deps on python{,3}-pkg-resources (Closes: #830289).
+    Thanks to Tincho!
+  * New upstream release
+
+ -- W. Martin Borgert <debacle@debian.org>  Sat, 23 Jul 2016 10:52:36 +0000
+
+python-pyscss (1.3.4-5) unstable; urgency=medium
+
+  * Team upload.
+  * Don't hard-code the python versions used in build to prevent FTBFS once
+    python3.4 is dropped from supported versions (Closes: #811493)
+    - Thanks to Matthias Klose for the patch
+  * Adjust debian/rules not to depend on pytest entry points for all supported
+    python/python3 versions
+
+ -- Scott Kitterman <scott@kitterman.com>  Tue, 19 Jan 2016 08:56:08 -0500
+
+python-pyscss (1.3.4-4) unstable; urgency=low
+
+  * use pybuild instead of python_distutils
+
+ -- W. Martin Borgert <debacle@debian.org>  Tue, 18 Aug 2015 17:11:33 +0000
+
+python-pyscss (1.3.4-3) unstable; urgency=low
+
+  * Added alternative for man page.
+
+ -- W. Martin Borgert <debacle@debian.org>  Tue, 18 Aug 2015 11:12:27 +0000
+
+python-pyscss (1.3.4-2) unstable; urgency=medium
+
+  * Add python-enum34 build-dep (Closes: #795521). Thanks Chris Lamb!
+  * Re-add missing manual page.
+
+ -- W. Martin Borgert <debacle@debian.org>  Fri, 14 Aug 2015 23:02:06 +0000
+
+python-pyscss (1.3.4-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Add missing build-deps python-pathlib and dh-python.
+  * Run unittests for Python 2.7 and 3.4.
+  * Removed obsolete patches python3-fixup and python-3.2-six.u.
+  * Lintian: Removed *.postrm.
+  * New standards version 3.9.6, no changes.
+
+ -- W. Martin Borgert <debacle@debian.org>  Fri, 31 Jul 2015 23:33:35 +0000
+
+python-pyscss (1.2.1-4) unstable; urgency=medium
+
+  * Add python{3,}-{pytest,pil} to Build-Depends.
+  * Run unit tests (only in Python 2.7).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 29 Sep 2014 06:20:43 +0000
+
+python-pyscss (1.2.1-3) unstable; urgency=medium
+
+  * Updated the Python3 fixup patch, using upstream commit (Closes: #761198).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 29 Sep 2014 14:14:54 +0800
+
+python-pyscss (1.2.1-2) unstable; urgency=medium
+
+  * Fix the python 3.2 patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 28 Sep 2014 07:39:21 +0000
+
+python-pyscss (1.2.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Added myself as uploader.
+  * Document upstream git repository in debian/rules, and add optional
+    include of /usr/share/openstack-pkg-tools/pkgos.make, to be able to
+    maintain/use it.
+  * Added extend-diff-ignore = "^[^/]*[.]egg-info/" in d/source/options.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 28 Sep 2014 00:06:12 +0800
+
+python-pyscss (1.2.0.post3-2) unstable; urgency=medium
+
+  * Fixed non ascii char in README.rst which produced an FTBFS.
+  * Added python-six / python3-six as build-depends (needed by setup.py).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 28 Jun 2014 06:51:52 +0000
+
+python-pyscss (1.2.0.post3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release (Closes: #738776).
+  * Added a debian/gbp.conf.
+  * Added missing ${python:Depends}
+  * Added Python 3 support.
+  * Removed duplicate debhelper build-depends.
+  * Cannonical VCS URLs.
+  * Standards-Version: is now 3.9.5.
+  * Added a watch file.
+  * override dh helpers which the package doesn't use.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 26 Jun 2014 12:10:36 +0000
+
+python-pyscss (1.1.5-1) unstable; urgency=low
+
+  * initial release (Closes: #705735)
+
+ -- W. Martin Borgert <debacle@debian.org>  Sun, 21 Apr 2013 17:40:59 +0000

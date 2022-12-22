@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<!-- (c) 2013 W. Martin Borgert <debacle@debian.org>
+     Date: 2013-04-21
+     License of this manual: MIT -->
+
+<refentry>
+  <refentryinfo>
+    <date>2016-07-23</date>
+  </refentryinfo>
+  <refmeta>
+    <refentrytitle>less2scss</refentrytitle>
+    <manvolnum>1</manvolnum>
+    <refmiscinfo class="source">less2scss</refmiscinfo>
+    <refmiscinfo class="manual">User Commands</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>less2scss</refname>
+
+    <refpurpose>Converts Less files to Scss.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>less2scss</command>
+      <arg><option>-h</option></arg>
+      <arg><option>--help</option></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      Run <command>less2scss --help</command> for more options.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Example</title>
+
+    <para>
+      <programlisting>
+	less2scss input.less &gt; output.scss
+      </programlisting>
+    </para>
+  </refsect1>
+</refentry>

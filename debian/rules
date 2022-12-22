@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+PYTHON3S:=$(shell py3versions -vr)
+
+UPSTREAM_GIT = git://github.com/Kronuz/pyScss.git
+-include /usr/share/openstack-pkg-tools/pkgos.make
+
+MANPAGES=pyscss.1 less2scss.1
+DB2MAN=http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
+XP=xsltproc --nonet --novalid
+
+export PYBUILD_NAME=pyscss
+export PYBUILD_TEST_PYTEST=1
+export PYBUILD_TEST_ARGS={dir}/scss/tests
+
+%:
+	dh $@ --buildsystem=pybuild --with python3
+
+override_dh_install: $(MANPAGES)
+	dh_install
+
+pyscss.1: debian/pyscss.dbk
+	$(XP) $(DB2MAN) $<
+
+less2scss.1: debian/less2scss.dbk
+	$(XP) $(DB2MAN) $<
+
+override_dh_clean:
+	dh_clean
+	rm -f $(MANPAGES)
+	rm -rf build
+	find . -iname '*.pyc' -delete

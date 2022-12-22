@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<!-- (c) 2013 W. Martin Borgert <debacle@debian.org>
+     Date: 2013-04-21
+     License of this manual: MIT -->
+
+<refentry>
+  <refentryinfo>
+    <date>2015-08-15</date>
+  </refentryinfo>
+  <refmeta>
+    <refentrytitle>pyscss</refentrytitle>
+    <manvolnum>1</manvolnum>
+    <refmiscinfo class="source">pyscss</refmiscinfo>
+    <refmiscinfo class="manual">User Commands</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>pyscss</refname>
+
+    <refpurpose>Converts Scss files to CSS.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>pyscss</command>
+      <arg><option>-h</option></arg>
+      <arg><option>--help</option></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>
+      Run <command>pyscss --help</command> for more options.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Example</title>
+
+    <para>
+      <programlisting>
+	pyscss --no-compress input.scss &gt; output.css
+      </programlisting>
+    </para>
+  </refsect1>
+</refentry>
