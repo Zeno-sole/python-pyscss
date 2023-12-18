@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	update-alternatives --remove pyscss /usr/bin/python2-pyscss
+	update-alternatives --remove less2scss /usr/bin/python2-less2scss
+fi
+
+#DEBHELPER#
+
+exit 0

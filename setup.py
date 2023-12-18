@@ -6,7 +6,7 @@ import os
 import platform
 import sys
 
-from setuptools import setup, Extension
+from setuptools import setup, Extension, Feature
 
 # this imports PROJECT, URL, VERSION, AUTHOR, AUTHOR_EMAIL, LICENSE,
 # DOWNLOAD_URL
@@ -24,16 +24,19 @@ if sys.version_info < (2, 7):
 # fail safe compilation shamelessly stolen from the simplejson
 # setup.py file.  Original author: Bob Ippolito
 
-ext_modules = [
-    # NOTE: header files are included by MANIFEST.in; Extension does not
-    # include headers in an sdist (since they're typically in /usr/lib)
-    Extension(
-        'scss.grammar._scanner',
-        sources=['scss/src/_speedups.c', 'scss/src/block_locator.c',
-                 'scss/src/scanner.c', 'scss/src/hashtable.c'],
-        libraries=['pcre']
-    ),
-]
+speedups = Feature(
+    'optional C speed-enhancement module',
+    standard=True,
+    ext_modules=[
+        # NOTE: header files are included by MANIFEST.in; Extension does not
+        # include headers in an sdist (since they're typically in /usr/lib)
+        Extension(
+            'scss.grammar._scanner',
+            sources=['scss/src/_speedups.c', 'scss/src/block_locator.c', 'scss/src/scanner.c', 'scss/src/hashtable.c'],
+            libraries=['pcre']
+        ),
+    ],
+)
 
 ext_errors = (CCompilerError, DistutilsExecError, DistutilsPlatformError)
 if sys.platform == 'win32' and sys.version_info > (2, 6):
@@ -80,11 +83,9 @@ def read(fname):
 
 
 def run_setup(with_binary):
+    features = {}
     if with_binary:
-        extra_opts = {}
-        extra_opts['ext_modules'] = ext_modules
-    else:
-        extra_opts = {}
+        features['speedups'] = speedups
     setup(
         name=PROJECT,
         version=VERSION,
@@ -93,7 +94,6 @@ def run_setup(with_binary):
         author=AUTHOR,
         author_email=AUTHOR_EMAIL,
         url=URL,
-        zip_safe=False,
         download_url=DOWNLOAD_URL,
         license=LICENSE,
         keywords='css oocss xcss sass scss less precompiler',
@@ -116,12 +116,12 @@ def run_setup(with_binary):
             'scss.grammar',
         ],
         cmdclass={'build_ext': ve_build_ext},
+        features=features,
         entry_points="""
         [console_scripts]
         pyscss = scss.tool:main
         less2scss = scss.less2scss:main
         """,
-        **extra_opts
     )
 
 

@@ -1,32 +1,44 @@
 #!/usr/bin/make -f
 
+PYTHONS:=$(shell pyversions -vr)
 PYTHON3S:=$(shell py3versions -vr)
 
 UPSTREAM_GIT = git://github.com/Kronuz/pyScss.git
 -include /usr/share/openstack-pkg-tools/pkgos.make
 
-MANPAGES=pyscss.1 less2scss.1
+MANPAGES=python2-pyscss.1 python3-pyscss.1 python2-less2scss.1 python3-less2scss.1
 DB2MAN=http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 XP=xsltproc --nonet --novalid
 
 export PYBUILD_NAME=pyscss
-export PYBUILD_TEST_PYTEST=1
-export PYBUILD_TEST_ARGS={dir}/scss/tests
 
 %:
-	dh $@ --buildsystem=pybuild --with python3
+	dh $@ --buildsystem=pybuild --with python2,python3
 
 override_dh_install: $(MANPAGES)
-	dh_install
+	dh_install -ppython-pyscss
+	mv $(CURDIR)/debian/python-pyscss/usr/bin/pyscss $(CURDIR)/debian/python-pyscss/usr/bin/python2-pyscss
+	mv $(CURDIR)/debian/python-pyscss/usr/bin/less2scss $(CURDIR)/debian/python-pyscss/usr/bin/python2-less2scss
+	dh_install -ppython3-pyscss
+	mv $(CURDIR)/debian/python3-pyscss/usr/bin/pyscss $(CURDIR)/debian/python3-pyscss/usr/bin/python3-pyscss
+	mv $(CURDIR)/debian/python3-pyscss/usr/bin/less2scss $(CURDIR)/debian/python3-pyscss/usr/bin/python3-less2scss
 
-pyscss.1: debian/pyscss.dbk
-	$(XP) $(DB2MAN) $<
+python2-pyscss.1 python3-pyscss.1: debian/pyscss.dbk
+	$(XP) $(DB2MAN) $< && mv pyscss.1 $@
 
-less2scss.1: debian/less2scss.dbk
-	$(XP) $(DB2MAN) $<
+python2-less2scss.1 python3-less2scss.1: debian/less2scss.dbk
+	$(XP) $(DB2MAN) $< && mv less2scss.1 $@
 
 override_dh_clean:
 	dh_clean
 	rm -f $(MANPAGES)
 	rm -rf build
 	find . -iname '*.pyc' -delete
+
+override_dh_auto_test:
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	set -e ; for pyvers in $(PYTHONS) $(PYTHON3S); do \
+		echo "=========== running tests with python$$pyvers ==========="; \
+		python$$pyvers -m pytest ; \
+	done
+endif

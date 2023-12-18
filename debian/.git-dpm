@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+15612dd5baa6288777ecf6c3c78d2267fac57c8a
+15612dd5baa6288777ecf6c3c78d2267fac57c8a
+a9738572b12839d4c3f4c7561e5b92f81a04ca67
+a9738572b12839d4c3f4c7561e5b92f81a04ca67
+python-pyscss_1.3.5.orig.tar.gz
+2d00b3a74e45827e8647418ee7a9b6e2df659481
+316692
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"
